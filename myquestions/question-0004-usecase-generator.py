@@ -3,13 +3,13 @@ import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 
 def generar_caso_de_uso_predecir_emisiones_co2(X_train, y_train, X_test):
-    # 1. Instanciar el modelo de regresión
+    # Instanciar el modelo de regresión
     modelo = RandomForestRegressor(n_estimators=100, random_state=42)
 
-    # 2. Entrenar el modelo con los datos históricos
+    # Entrenar el modelo con los datos históricos
     modelo.fit(X_train, y_train)
 
-    # 3. Realizar las predicciones sobre el conjunto nuevo
+    # Realizar las predicciones sobre el conjunto nuevo
     predicciones = modelo.predict(X_test)
 
     return np.array(predicciones)
