@@ -1,0 +1,19 @@
+El Problema: Clasificación Automática de Tickets de Soporte
+Imagina que una empresa recibe miles de mensajes de clientes. Algunos son "Críticos" (quejas de seguridad) y otros son "Consultas" (horarios, precios). Necesitas transformar estos mensajes de texto en números y entrenar un clasificador rápido para etiquetarlos automáticamente.
+
+Tu Misión
+Escribe una función que transforme una lista de textos en una matriz numérica usando TF-IDF (Term Frequency-Inverse Document Frequency) y entrene un modelo Naive Bayes para predecir la categoría.
+
+Nombre de la función: clasificar_tickets_soporte
+
+Argumentos:
+
+textos (list): Una lista de strings (los mensajes de los clientes).
+
+etiquetas (list/array): Las categorías correspondientes a cada mensaje.
+
+nuevo_mensaje (str): Un mensaje nuevo que el sistema debe clasificar.
+
+Retorno:
+
+numpy.ndarray: Un array con la predicción de la categoría para el nuevo_mensaje

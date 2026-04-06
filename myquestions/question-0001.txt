@@ -1,0 +1,13 @@
+El Problema: Detección de Valores Atípicos en Sensores Industriales
+Imagina que trabajas en una planta de energía y recibes un flujo constante de datos de sensores que miden presión, temperatura y vibración. Necesitas identificar automáticamente qué registros se comportan de manera extraña (anomalías) para prevenir fallas en la maquinaria, sin tener etiquetas previas de qué es "malo" y qué es "bueno".
+
+Tu Misión
+Escribe una función que utilice el algoritmo de Isolation Forest para identificar estas anomalías en un conjunto de datos multivariado.
+
+Nombre de la función: detectar_anomalias_industriales
+
+Argumentos: * df (pd.DataFrame): Un DataFrame con las lecturas de los sensores (solo columnas numéricas).
+
+contaminacion (float): El porcentaje esperado de anomalías en los datos (ej. 0.05).
+
+Retorno: * numpy.ndarray: Un array que contenga solo dos valores posibles: 1 para datos normales y -1 para anomalías.

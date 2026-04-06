@@ -1,0 +1,17 @@
+El Problema: Compresión de Información en Análisis Genómico
+Imagina que trabajas con un dataset de expresión genética que contiene miles de variables (columnas) para unos pocos pacientes. Muchos de estos genes aportan información redundante. Necesitas reducir la complejidad del dataset manteniendo la mayor cantidad de información posible para que un médico pueda analizar los patrones más importantes sin perderse en el ruido.
+
+Tu Misión
+Escribe una función que utilice PCA (Principal Component Analysis) para transformar un conjunto de datos de alta dimensionalidad en un nuevo conjunto reducido, basándose en un umbral de varianza acumulada.
+
+Nombre de la función: comprimir_dimensiones_por_varianza
+
+Argumentos:
+
+X (pd.DataFrame): El DataFrame con las características originales.
+
+umbral_varianza (float): Un valor entre 0 y 1 que indica cuánta información (varianza) deseamos conservar (ej. 0.95 para el 95%).
+
+Retorno:
+
+numpy.ndarray: Un array con las nuevas coordenadas de los datos en el espacio reducido (los componentes principales necesarios para alcanzar ese umbral).

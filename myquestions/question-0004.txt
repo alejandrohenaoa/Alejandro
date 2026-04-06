@@ -1,0 +1,19 @@
+El Problema: Estimación de Emisiones de Carbono (Regresión)
+Una organización ambiental tiene un inventario de fábricas. Tienen datos sobre el consumo de energía, el número de empleados y el tamaño de la planta, pero les falta el dato de "Emisiones de CO2" para varias instalaciones nuevas. En lugar de usar un promedio simple, debes entrenar un modelo que aprenda la relación entre las características físicas de la planta y sus emisiones para predecir los valores faltantes.
+
+Tu Misión
+Escribe una función que entrene un modelo de Random Forest Regressor y devuelva las predicciones para un conjunto de prueba.
+
+Nombre de la función: predecir_emisiones_co2
+
+Argumentos:
+
+X_train (pd.DataFrame): Características de las fábricas con datos conocidos.
+
+y_train (pd.Series/Array): Emisiones de CO2 reales de esas fábricas.
+
+X_test (pd.DataFrame): Características de las fábricas a las que queremos predecirles la emisión.
+
+Retorno:
+
+numpy.ndarray: Un array con las estimaciones de CO2 (valores continuos) para el grupo de prueba.
