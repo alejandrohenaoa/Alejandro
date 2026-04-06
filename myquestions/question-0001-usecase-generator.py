@@ -26,5 +26,10 @@ def generar_caso_de_uso_detectar_anomalias_industriales(contaminacion=0.05):
     predicciones = modelo.fit_predict(datos_limpios)
     scores = modelo.decision_function(datos_limpios)
 
-    # ⚠️ SOLO devolver 2 elementos
-    return predicciones, scores
+    # 🔥 Convertir predicciones a diccionario
+    resultado_dict = {
+        "anomalias": predicciones.tolist()
+    }
+
+    # ✅ Retornar lo que pide la plataforma
+    return resultado_dict, scores.tolist()
