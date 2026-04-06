@@ -3,16 +3,18 @@ import numpy as np
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
-def use_case_generator(X, umbral_varianza=0.95):
-    # Filtrado de datos numéricos
-    X_numeric = X.select_dtypes(include=[np.number])
-    
-    # Escalado esencial para PCA
+def generar_caso_de_uso_comprimir_dimensiones_por_varianza(X, umbral_varianza=0.95):
+    """
+    Reduce la dimensionalidad de un dataset conservando un porcentaje de la varianza.
+    """
+    # 1. Escalar los datos antes de aplicar PCA
     scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X_numeric)
-    
-    # Reducción de dimensiones
-    pca = PCA(n_components=umbral_varianza, random_state=42)
+    X_scaled = scaler.fit_transform(X)
+
+    # 2. Inicializamos PCA con el umbral deseado
+    pca = PCA(n_components=umbral_varianza)
+
+    # 3. Ajustamos y transformamos
     X_reducido = pca.fit_transform(X_scaled)
-    
-    return pd.DataFrame(X_reducido, index=X.index)
+
+    return X_reducido
