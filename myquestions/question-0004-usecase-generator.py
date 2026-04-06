@@ -3,9 +3,6 @@ import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 
 def generar_caso_de_uso_predecir_emisiones_co2(X_train, y_train, X_test):
-    """
-    Entrena un regresor de bosque aleatorio para estimar valores de emisiones.
-    """
     # 1. Instanciar el modelo de regresión
     modelo = RandomForestRegressor(n_estimators=100, random_state=42)
 
