@@ -3,22 +3,51 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
-def generar_caso_de_uso_clasificar_tickets_soporte(textos, etiquetas, nuevo_mensaje):
-    # Convertimos la lista de textos a un DataFrame para manejo consistente
-    df = pd.DataFrame({'mensaje': textos})
+def generar_caso_de_uso_clasificar_tickets_soporte():
+    
+    # 📩 Datos de ejemplo (tickets de soporte)
+    textos = [
+        "No puedo iniciar sesión",
+        "Error en el pago con tarjeta",
+        "La aplicación se cierra sola",
+        "Quiero cambiar mi contraseña",
+        "No funciona el botón de compra",
+        "Problema con la factura"
+    ]
 
-    # Vectorización TF-IDF
-    vectorizador = TfidfVectorizer(stop_words=None)
-    X = vectorizador.fit_transform(df['mensaje'])
+    etiquetas = [
+        "login",
+        "pago",
+        "bug",
+        "cuenta",
+        "bug",
+        "facturacion"
+    ]
 
-    # Entrenamiento del modelo Naive Bayes
+    nuevo_mensaje = "No puedo pagar mi suscripción"
+
+    # 🔤 Vectorización TF-IDF
+    vectorizador = TfidfVectorizer()
+    X = vectorizador.fit_transform(textos)
+
+    # 🤖 Modelo Naive Bayes
     modelo = MultinomialNB()
     modelo.fit(X, etiquetas)
 
-    # Transformar el nuevo mensaje usando el mismo vectorizador
+    # 🔍 Transformar nuevo mensaje
     X_nuevo = vectorizador.transform([nuevo_mensaje])
 
-    # Realizar la predicción
-    prediccion = modelo.predict(X_nuevo)
+    # 📊 Predicción
+    prediccion = modelo.predict(X_nuevo)[0]
 
-    return prediccion
+    # 📈 Probabilidades (extra pro 🔥)
+    probabilidades = modelo.predict_proba(X_nuevo)[0]
+
+    # 📦 Diccionario (OBLIGATORIO como primer elemento)
+    resultado_dict = {
+        "mensaje": nuevo_mensaje,
+        "categoria_predicha": prediccion
+    }
+
+    # ⚠️ Retornar 2 elementos
+    return resultado_dict, probabilidades.tolist()
