@@ -1,16 +1,20 @@
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import IsolationForest
+from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
-def use_case_generator(df, contaminacion=0.2):
-    # Seleccionamos solo números para evitar errores de texto
-    datos_numericos = df.select_dtypes(include=[np.number])
-    
-    # Escalado para mejorar la detección
-    escalador = StandardScaler()
-    datos_escalados = escalador.fit_transform(datos_numericos)
-    
-    # Modelo con el nombre de función requerido
-    modelo = IsolationForest(contamination=contaminacion, random_state=42)
-    return modelo.fit_predict(datos_escalados)
+def generar_caso_de_uso_comprimir_dimensiones_por_varianza(X, umbral_varianza=0.95):
+    """
+    Reduce la dimensionalidad de un dataset conservando un porcentaje de la varianza.
+    """
+    # 1. Escalar los datos antes de aplicar PCA
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+
+    # 2. Inicializamos PCA con el umbral deseado
+    pca = PCA(n_components=umbral_varianza)
+
+    # 3. Ajustamos y transformamos
+    X_reducido = pca.fit_transform(X_scaled)
+
+    return X_reducido
